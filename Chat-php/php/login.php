@@ -21,4 +21,26 @@
   } else{
     echo "Preencha todos os campos!";
   }*/
+
+  use App\Functions\logar;
+  require './../App/Functions/login.php';
+
+  session_start();
+  $email = $_POST['email'];
+  $password = $_POST['senha'];
+  if(!empty($email) && !empty($password)){
+  $logar = new logar();
+  $dados = $logar->login($email, $password);
+  if (!empty($dados)) {
+    foreach($dados as $key=>$value){
+      $_SESSION['unique_id'] = $value['unique_id'];
+      $update = $logar->status($value['unique_id']);
+      echo "success";
+    }
+  } else {
+      echo "Dados inválidos, tente novamente";
+  }
+} else{
+  echo "Preencha todos os campos";
+}
   ?>

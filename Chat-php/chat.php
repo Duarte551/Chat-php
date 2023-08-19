@@ -1,5 +1,8 @@
 <?php 
-  session_start();
+
+use App\Functions\usuario;
+require_once 'App/Functions/users.php';
+  #session_start();
   if(!isset($_SESSION['unique_id'])){
     header("location: login.php");
   }
@@ -13,18 +16,19 @@
    <section class="chat-area">
     <header>
       <?php 
-          include_once "php/config.php";
-          $user_id = mysqli_real_escape_string($conn, $_GET['user_id']);
-          $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$user_id}");
-          if(mysqli_num_rows($sql) > 0){
-            $row = mysqli_fetch_assoc($sql);
+          $user_id =  $_GET['user_id'];
+          $stmt = new usuario;
+          $user = $stmt->user($user_id);
+         # $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$user_id}");
+          if(count($user) > 0){
+            $row = $user;
           }
         ?>
       <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
-        <img src="php/images/<?php echo $row['img']; ?>" alt="">
+        <img src="php/images/<?php foreach($row as $key => $value){echo $value['img'];}?>" alt="">
         <div class="details">
-          <span><?php echo $row['fname'] . " " . $row['lname']; ?></span>
-          <p><?php echo $row['status']; ?></p>
+          <span><?php foreach($row as $key => $value){ echo $value['fname'];}" " ;foreach($row as $key => $value){ $value['lname'];} ?></span>
+          <p><?php foreach($row as $key => $value){echo $value['status'];} ?></p>
         </div>
     </header>
     <div class="chat-box">

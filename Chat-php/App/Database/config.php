@@ -1,14 +1,14 @@
 <?php 
 
 namespace App\Database;
-require './global.php';
+require "C:/users/paulo/xampp/htdocs/Projetos/Chat-php/global.php";
 use PDO;
 use PDOException;
 
 class Conexao{
 
   public static $connection;
-  
+
   public function getConnection(){
     try{
       self::$connection = new PDO('mysql:host=' . getenv('HOST') . ';dbname=' . getenv('DBNAME'), getenv('USER'), getenv('PASS'));
@@ -25,5 +25,4 @@ class Conexao{
     
   }
 }
-
 ?>

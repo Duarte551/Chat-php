@@ -31,32 +31,27 @@
 </body>
 </html>
 
-<?php 
+<?php /*
   use App\Functions\logar;
   require 'App/Functions/login.php';
 
   session_start();
-  $logar = $_SESSION['logar'] ?? false;
-  
-  if ($_POST){
-  echo "Teste";
-  if (isset($_POST['submit'])){
   $email = $_POST['email'];
   $senha = $_POST['senha'];
-  $_SESSION['email'] = $email;
+  if(!empty($email) && !empty($senha)){
   $logar = new logar();
   $dados = $logar->login($email, $senha);
-  $num = $dados->rowCount();
-  
-  if ($num == 1) {
-      $_SESSION ['logar'] = true;
-      $_SESSION ['email'] = $email;
-      echo "<script> alert('Sessão Iniciada...') ; window.location='http://Localhost:8000/'</script>";
+  if (!empty($dados)) {
+    foreach($dados as $key=>$value){
+      $_SESSION['unique_id'] = $value['unique_id'];
+      $update = $logar->status($value['unique_id']);
+      echo "success";
+    }
   } else {
       echo "Dados inválidos, tente novamente";
   }
-  
-  }
-  
-  }
+} else{
+  echo "Preencha todos os campos";
+}
+*/
 ?>

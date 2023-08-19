@@ -1,13 +1,15 @@
 <?php 
-  session_start();
-  include_once "config.php";
+use App\Functions\notuser;
+require_once './../App/Functions/notuser.php';
   $outgoing_id = $_SESSION['unique_id'];
-  $sql = mysqli_query($conn, "SELECT * FROM users WHERE NOT unique_id = {$outgoing_id}");
+  $stmt = new notuser();
+  $user = $stmt->user($outgoing_id);
   $output = "";
-
-  if(mysqli_num_rows($sql) == 1){
+  $nonuser = $stmt->iduser($outgoing_id);
+  
+  if(count($user) == 1){
     $output .= "Sem usuários ativos";
-  }elseif(mysqli_num_rows($sql) > 0){
+  }elseif(count($user) > 0){
     include "data.php";
   } 
   echo $output;

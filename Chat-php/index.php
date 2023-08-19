@@ -12,7 +12,7 @@
   <div class="wrapper">
     <section class="form signup">
       <header>RealTime Chat App</header>
-      <form action="#" enctype="multipart/form-data" autocomplete="off">
+      <form action="" enctype="multipart/form-data" autocomplete="off">
         <div class="error-txt"></div>
         <div class="name-details">
           <div class="field input">

@@ -1,6 +1,8 @@
 <?php
 
 use App\Functions\usuario;
+require_once 'App/Functions/users.php';
+$unique_id = $_SESSION['unique_id'];
 ?>
 
 <?php 
@@ -11,20 +13,23 @@ use App\Functions\usuario;
    <section class="users">
     <header>
       <?php 
-require_once 'App/Functions/users.php';
+
         $stmt = new usuario();
-        if($stmt->user()->numRows() > 0){
-          $row = mysqli_fetch_assoc($sql);
+        $user = $stmt->user($unique_id);
+        if(!empty($user)){
+          foreach($user as $key => $value){
+        # echo $value['img'];
+          }
         } 
       ?>
       <div class="content">
-        <img src="php/images/<?php echo $row['img'] ?>" alt="">
+        <img src="php/images/<?php foreach($user as $key => $value){echo $value['img'];}?>" alt="">
         <div class="details">
-          <span> <?php echo $row['fname'] . " " . $row['lname']  ?></span>
-          <p><?php echo $row['status'] ?></p>
+          <span> <?php foreach($user as $key => $value){echo $value['fname'] . " " . $value['lname'];}?></span>
+          <p><?php foreach($user as $key => $value){echo $value['status'];} ?></p>
         </div>
       </div>
-      <a href="php/logout.php?logout_id=<?php echo $row['unique_id']?>" class="logout">Sair</a>
+      <a href="php/logout.php?logout_id=<?php foreach($user as $key => $value){echo $value['unique_id'];}?>" class="logout">Sair</a>
     </header>
     <div class="search">
       <span class="text">Selecione um usuário para iniciar conversa</span>
