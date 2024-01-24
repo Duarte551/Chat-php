@@ -28,8 +28,8 @@ $unique_id = $_SESSION['unique_id'];
           <span> <?php foreach($user as $key => $value){echo $value['fname'] . " " . $value['lname'];}?></span>
           <p><?php foreach($user as $key => $value){echo $value['status'];} ?></p>
         </div>
-      </div>
-      <a href="php/logout.php?logout_id=<?php foreach($user as $key => $value){echo $value['unique_id'];}?>" class="logout">Sair</a>
+      </div> <?php foreach($user as $key => $value){ ?>
+      <a href="php/logout.php?logout_id=<?php echo $value['unique_id'];}?>" class="logout">Sair</a>
     </header>
     <div class="search">
       <span class="text">Selecione um usuário para iniciar conversa</span>

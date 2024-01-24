@@ -26,7 +26,7 @@ class logar{
     return $stmt;
   }
 
-  public function logout(){
+  public function logout($status, $logout_id){
     $db = new Conexao();
     $sql = ("UPDATE users SET status = :status WHERE unique_id = :logout_id");
     $stmt = $db->getConnection()->prepare($sql);

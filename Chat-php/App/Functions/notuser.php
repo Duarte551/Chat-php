@@ -6,7 +6,12 @@ require_once './../App/Database/config.php';
 use PDO;
 session_start();
 
-$unique_id = $_SESSION['unique_id'];
+if(isset($_SESSION['unique_id'])){
+  $unique_id = $_SESSION['unique_id'];
+} else{
+  $unique_id = 0;
+}
+
 
 class notuser{
     public function notuser($unique_id){

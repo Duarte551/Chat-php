@@ -1,7 +1,7 @@
 <?php 
 
 namespace App\Database;
-require "C:/users/paulo/xampp/htdocs/Projetos/Chat-php/global.php";
+require "/Users/Duarte/xampp/htdocs/Chat-php/global.php";
 use PDO;
 use PDOException;
 

@@ -1,5 +1,6 @@
 <?php 
 
+session_start();
 use App\Functions\logar;
 require './../App/Functions/login.php';
 
@@ -7,7 +8,6 @@ require './../App/Functions/login.php';
     $logout_id = $_GET['logout_id'];
     if(isset($logout_id)){
       $status = "Offline";
-
       $stmt = new logar;
       $sql = $stmt->logout($status, $logout_id);
       if($sql){

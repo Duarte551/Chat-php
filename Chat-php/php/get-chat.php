@@ -13,7 +13,7 @@ $unique_id = $_SESSION['unique_id'];
     $row = $mensagem;
    if(count($mensagem) > 0){
       foreach($row as $key=>$value){
-        if($value['outgoing_msg_id'] === $outgoing_id){
+        if($value['outgoing_msg_id'] == $outgoing_id){
           $output .= '<div class="chat outgoing">
                       <div class="details">
                         <p>'. $value['msg'] .'</p>
